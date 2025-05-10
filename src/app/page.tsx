@@ -11,16 +11,26 @@ export default function Home() {
   return (
     <div>
       {/* pink hero banner */}
-      <div className="m-[2vw]">
+      <div className="m-[2vw] ">
         <div
-          className="w-full border-4 border-black rounded-2xl
+          className="flex flex-col justify-start items-center
+          w-full border-4 border-black rounded-2xl
                   bg-center bg-no-repeat 
                   aspect-[7.6/15] md:aspect-[16/9]
-                  bg-[length:var(--hero-image-size)]"
+                  bg-[length:var(--hero-image-size)]
+                  relative h-full"
           style={{
             backgroundImage: 'var(--hero-image)'
           }}
         >
+          <div className="md:hidden h-[50vw]"></div>
+          <button className="md:absolute md:bottom-[22%] md:right-[20%] w-[18vw] h-[6vw] max-md:w-[33vw] max-md:h-[11vw] max-md:text-[4vw]
+          text-[2vw] md:m-auto
+           bg-sky-400 text-white  hover:bg-sky-600  border-white 
+           font-extrabold italic uppercase rounded-lg border-4 shadow-md transition
+           ">
+            BUY NOW
+          </button>
         </div>
       </div>
 
