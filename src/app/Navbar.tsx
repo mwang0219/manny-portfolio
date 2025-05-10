@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from 'next/link';
 
 export default function NavBar() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     const TitleLogo = () => {
         return (
             <h1>Manny's Portfolio</h1>
@@ -17,42 +19,53 @@ export default function NavBar() {
         )
     }
 
-    const NavbarLink = ({link, name}: {link:string, name: string}) => {
-        return( 
+    const NavbarLink = ({ link, name }: { link: string, name: string }) => {
+        return (
             <Link className="font-sans italic font-bold text-xl" href={link}>{name}</Link>
         )
     }
-    
+
 
     return (
         <div className="flex justify-center h-16 bg-cyan-400 border-b-4 ">
+            {/* Mobile Header */}
             <div className="flex w-full mx-4 justify-between items-center md:hidden">
-                <div className="">
+                <div className="cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                     <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#1f1f1f"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" /></svg>
                 </div>
                 <div className="">
                     <TitleLogo />
                 </div>
                 <div className="">
-                    <ContactIcon/>
+                    <ContactIcon />
                 </div>
             </div>
+
+            {/* 移动端下拉菜单 */}
+            {isMenuOpen && (
+                <div className="absolute top-16 left-0 w-full bg-cyan-400 border-b-4 z-50 md:hidden">
+                    <div className="flex flex-col p-4 space-y-4">
+                        <NavbarLink link="/project" name="Projects" />
+                        <NavbarLink link="/education" name="Education History" />
+                        <NavbarLink link="/career" name="Career History" />
+                    </div>
+                </div>
+            )}
+
+            {/* Web Header */}
             <div className="flex w-full mx-4 justify-between items-center max-md:hidden">
-            
-                <TitleLogo/>
-                
-            
+                <TitleLogo />
                 <div className="flex w-full mx-4 justify-start gap-4 items-center">
-                    <NavbarLink link="/project" name="Projects"/>
-                    <NavbarLink link="/education" name="Education History"/>
-                    <NavbarLink link="/career" name="Career History"/>
+                    <NavbarLink link="/project" name="Projects" />
+                    <NavbarLink link="/education" name="Education History" />
+                    <NavbarLink link="/career" name="Career History" />
 
                 </div>
-        
+
                 <div className="">
-                    <ContactIcon/>
+                    <ContactIcon />
                 </div>
-            
+
             </div>
         </div>
 

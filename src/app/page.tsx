@@ -11,11 +11,15 @@ export default function Home() {
   return (
     <div>
       {/* pink hero banner */}
-      <div className="m-10">
+      <div className="m-[2vw]">
         <div
-          className="w-full h-[96vh] border-4 border-black rounded-2xl
-                  bg-[url('/assets/BirthdayCake-hero-web.webp')] 
-                  bg-cover bg-center bg-no-repeat"
+          className="w-full border-4 border-black rounded-2xl
+                  bg-center bg-no-repeat 
+                  aspect-[7.6/15] md:aspect-[16/9]
+                  bg-[length:var(--hero-image-size)]"
+          style={{
+            backgroundImage: 'var(--hero-image)'
+          }}
         >
         </div>
       </div>
