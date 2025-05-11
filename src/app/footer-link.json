@@ -1,0 +1,50 @@
+{
+    "Feast": [
+        {
+            "name": "Shop All",
+            "link": "https://facebook.com"
+        },
+        {
+            "name": "Chocolate",
+            "link": "https://twitter.com"
+        },
+        {
+            "name": "Bundles",
+            "link": "https://facebook.com"
+        },
+        {
+            "name": "Limited Time",
+            "link": "https://twitter.com"
+        },
+        {
+            "name": "Find A Store",
+            "link": "https://facebook.com"
+        }
+    ],
+    "Info": [
+        {
+            "name": "Sourcing",
+            "link": "https://google.com"
+        },
+        {
+            "name": "FAQ",
+            "link": "https://bing.com"
+        },
+        {
+            "name": "Contact Us",
+            "link": "https://google.com"
+        },
+        {
+            "name": "My Account",
+            "link": "https://bing.com"
+        },
+        {
+            "name": "Order Tracking",
+            "link": "https://google.com"
+        },
+        {
+            "name": "Careers",
+            "link": "https://bing.com"
+        }
+    ]
+}
