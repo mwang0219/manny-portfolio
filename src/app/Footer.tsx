@@ -1,5 +1,8 @@
+"use client";
+
 import footerlink from './footer-link.json';
 import Image from "next/image";
+import { useState } from "react";
 
 interface LinkItem {
     name: string;
@@ -8,6 +11,30 @@ interface LinkItem {
 
 interface LinkGroup {
     [category: string]: LinkItem[];
+}
+
+// ✅ 自定义 Hook：管理 input 和提交行为
+function useInputAction(onSubmit: (val: string) => void) {
+    const [value, setValue] = useState("");
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value);
+    };
+
+    const handleSubmit = () => {
+        if (value.trim()) {
+            onSubmit(value);
+            setValue(""); // 可选：提交后清空输入框
+        }
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            handleSubmit();
+        }
+    };
+
+    return { value, onChange: handleChange, onKeyDown: handleKeyDown, handleSubmit };
 }
 
 
@@ -53,6 +80,12 @@ const genLinkBtn = (linkList: LinkGroup): React.ReactElement[] => {
 
 export default function Footer() {
     const renderedLinks = genLinkBtn(footerlink);
+    // 使用自定义 Hook 管理输入框行为
+    const { value, onChange, onKeyDown, handleSubmit } = useInputAction((val) => {
+        console.log("Submitted email:", val);
+        // 你可以在这里调用 API 或添加逻辑
+    });
+
     return (
         <div className="">
             <div className="flex bg-blue-400 border-black border-t-4">
@@ -75,9 +108,12 @@ export default function Footer() {
                                 <input
                                     type="email"
                                     placeholder="ENTER EMAIL"
+                                    value={value}
+                                    onChange={onChange}
+                                    onKeyDown={onKeyDown}
                                     className="flex-1 px-6 grow font-extrabold text-gray-600 focus:outline-none bg-white"
                                 />
-                                <button className="px-4 border-black border-l-2 bg-cyan-700 font-bold text-white hover:bg-cyan-800">
+                                <button onClick={handleSubmit} className="px-4 border-black border-l-2 bg-cyan-700 font-bold text-white hover:bg-cyan-800">
                                     SIGN UP
                                 </button>
                             </div>
